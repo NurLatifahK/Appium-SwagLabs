@@ -3,6 +3,10 @@ import scrollScreen from '../../helpers/scrollScreen.js'
 import LoginPage from '../pageobjects/login.page.js'
 
 describe('LOGIN SWAGLABS', function () {
+    after(async function(){
+        await driver.reloadSession()
+    })
+    
     it('User coba scroll ke atas bawah', async function () {
         await scrollScreen(600, 100)
         await scrollScreen(100, 600)

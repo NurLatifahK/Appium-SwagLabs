@@ -1,9 +1,15 @@
 import { $,driver } from '@wdio/globals'
+import scrollScreen from '../../helpers/scrollScreen.js'
 
 class HomePage {
     // element locator
     get toggleButton() { return $('//*[@content-desc="test-Toggle"]') }
     get descProduct() { return  $('//*[@content-desc="test-Item description" and @text="carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection."]') }
+
+    get allProducts() { return $$('//*[@content-desc="test-Item title"]') }
+    get productName() { return $$('//*[@content-desc="test-Item"]') }
+    get productPrice() { return $$('//*[@content-desc="test-Price"]')}
+
     get addToCartButton() { return $('//*[@text="ADD TO CART"]') }
     get sortingButton() { return $('//*[@content-desc="test-Modal Selector Button"]') }
     get ZtoAButton() { return $('//*[@text="Name (Z to A)"]') }
@@ -23,6 +29,39 @@ class HomePage {
     // actions
     async chageLayout(){
         await this.toggleButton.click()
+    }
+
+    async scrollAllProduct(){
+        for (let index = 0; index < 10; index++) {
+            let a = await this.productName
+            // console.log(this.productName.length)
+            if(a.length === 6) {
+                break
+            }
+            await scrollScreen(600,500)
+        }
+    }
+
+    async getAllProductsName(){
+        const allProductsName = [] 
+        const all = await this.allProducts
+
+        for (const product of all) {
+            const productNameText = await product.getText()
+            allProductsName.push(productNameText)
+        }
+        return allProductsName
+    }
+
+    async getAllProductsPrice(){
+        const allProductPrice = []
+        const all = await this.productPrice
+
+        for (const product of all) {
+            const productPriceNumber = await product.getText()
+            allProductPrice.push(productPriceNumber)
+        }
+        return allProductPrice
     }
 
     async sortZtoA(){

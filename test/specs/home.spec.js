@@ -2,6 +2,7 @@ import { $, driver, expect } from '@wdio/globals'
 import scrollScreen from '../../helpers/scrollScreen.js'
 import LoginPage from '../pageobjects/login.page.js'
 import HomePage from '../pageobjects/home.page.js'
+import { isAscendingProduct, isDescendingProduct, isAscendingPrice, isDescendingPrice } from '../../helpers/sortingButton.js'
 
 describe('HOME PAGE SWAGLABS', function(){
     beforeEach('User sudah harus login', async function(){
@@ -20,28 +21,59 @@ describe('HOME PAGE SWAGLABS', function(){
         )
     })  
 
-//////////////// SORTING GA YAKIN soalnya yang di expect di tiap productnya, kalo productnya ganti ??
-    it('User click sorting and choose by Name(Z to A).', async function(){
+    it('User click sorting and choose by Name(A to Z).', async () => {
+        await HomePage.sortAtoZ()
+        await HomePage.scrollAllProduct()
+        const productsAtoZ = await HomePage.getAllProductsName()
+        const isProductSortedAsc = isAscendingProduct(productsAtoZ)
+        await expect(isProductSortedAsc).toBe(true)
+    })
+
+    it('User click sorting and choose by Name(Z to A).', async () => {
         await HomePage.sortZtoA()
-        await expect(HomePage.lowestAlphabet).toHaveText(
-            expect.stringContaining('Test.allTheThings()')
-        )
+        await HomePage.scrollAllProduct()
+        const productsZtoA = await HomePage.getAllProductsName()
+        const isProductSortedDes = isDescendingProduct(productsZtoA)
+        await expect(isProductSortedDes).toBe(true)
     })
 
-    it('User click sorting and choose by Price (low to high).', async function(){
+    it('User click sorting and choose by Price (low to high).', async () => {
         await HomePage.sortPriceLow()
-        await expect(HomePage.lowestPrice).toHaveText('$7.99')
-    })
-
-    it('User click sorting and choose by Price (high to low).', async function(){
-        await HomePage.sortPriceHigh()
-        await expect(HomePage.highestPrice).toHaveText('$49.99')
+        await HomePage.scrollAllProduct()
+        const priceLowtoHigh = await HomePage.getAllProductsPrice()
+        const isProductSortedLowtoHigh = isAscendingPrice(priceLowtoHigh)
+        await expect (isProductSortedLowtoHigh).toBe(true)
     })
     
-    it('User click sorting and choose by Name(A to Z).', async function(){
-        await HomePage.sortAtoZ()
-        await expect(HomePage.highestAlphabet).toHaveText('Sauce Labs Backpack')
+    it('User click sorting and choose by Price (high to low).', async () => {
+        await HomePage.sortPriceHigh()
+        await HomePage.scrollAllProduct()
+        const priceHightoLow = await HomePage.getAllProductsPrice()
+        const isProductSortedHightoLow = isDescendingPrice(priceHightoLow)
+        await expect (isProductSortedHightoLow).toBe(true)
     })
+
+    // it('User click sorting and choose by Name(Z to A).', async function(){
+    //     await HomePage.sortZtoA()
+    //     await expect(HomePage.lowestAlphabet).toHaveText(
+    //         expect.stringContaining('Test.allTheThings()')
+    //     )
+    // })
+
+    // it('User click sorting and choose by Name(A to Z).', async function(){
+    //     await HomePage.sortAtoZ()
+    //     await expect(HomePage.highestAlphabet).toHaveText('Sauce Labs Backpack')
+    // })
+
+    // it('User click sorting and choose by Price (low to high).', async function(){
+    //     await HomePage.sortPriceLow()
+    //     await expect(HomePage.lowestPrice).toHaveText('$7.99')
+    // })
+
+    // it('User click sorting and choose by Price (high to low).', async function(){
+    //     await HomePage.sortPriceHigh()
+    //     await expect(HomePage.highestPrice).toHaveText('$49.99')
+    // })
 
     it('User select 1 product', async function(){
         await HomePage.selectAddToCartButton()

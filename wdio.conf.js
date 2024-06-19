@@ -24,7 +24,7 @@ export const config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './test/specs/**/*.js'
+        ['./test/specs/**/*.js']
     ],
     // Patterns to exclude.
     exclude: [
@@ -62,7 +62,10 @@ export const config = {
             process.cwd(),
             'apk',
             'ecommerce.apk' //nama target apknya apa
-        )
+        ),
+        "appium:settings": {
+            "allowInvisibleElements": true
+        }
     }],
 
     //

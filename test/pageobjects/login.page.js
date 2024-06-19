@@ -1,6 +1,6 @@
 import { $ } from '@wdio/globals'
 
-class loginPage {
+class LoginPage {
     // element locator
     get usernameInput() { return $('~test-Username')}
     get passwordInput() { return $('~test-Password')}
@@ -15,7 +15,7 @@ class loginPage {
     get problemUserButton() { return $('//*[@text="problem_user"]')}
     
     // page action
-    async loginSetValue(username, password) {
+    async loginSetValue(username = "", password = "") {
         await this.usernameInput.setValue(username)
         await this.passwordInput.setValue(password)
         await this.loginButton.click()
@@ -38,4 +38,4 @@ class loginPage {
 
 
 }
-export default new loginPage()
+export default new LoginPage()

@@ -53,28 +53,6 @@ describe('HOME PAGE SWAGLABS', function(){
         await expect (isProductSortedHightoLow).toBe(true)
     })
 
-    // it('User click sorting and choose by Name(Z to A).', async function(){
-    //     await HomePage.sortZtoA()
-    //     await expect(HomePage.lowestAlphabet).toHaveText(
-    //         expect.stringContaining('Test.allTheThings()')
-    //     )
-    // })
-
-    // it('User click sorting and choose by Name(A to Z).', async function(){
-    //     await HomePage.sortAtoZ()
-    //     await expect(HomePage.highestAlphabet).toHaveText('Sauce Labs Backpack')
-    // })
-
-    // it('User click sorting and choose by Price (low to high).', async function(){
-    //     await HomePage.sortPriceLow()
-    //     await expect(HomePage.lowestPrice).toHaveText('$7.99')
-    // })
-
-    // it('User click sorting and choose by Price (high to low).', async function(){
-    //     await HomePage.sortPriceHigh()
-    //     await expect(HomePage.highestPrice).toHaveText('$49.99')
-    // })
-
     it('User select 1 product', async function(){
         await HomePage.selectAddToCartButton()
         await expect(HomePage.cartButton).toBeEnabled()

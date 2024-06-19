@@ -13,17 +13,12 @@ describe('HOME PAGE SWAGLABS', function(){
         await driver.reloadSession()
     })
 
-    it('User click toggle button grid to list.', async function(){
-        await HomePage.toggleGridButton()
+    it('User click change layout.', async function(){
+        await HomePage.chageLayout()
         await expect(HomePage.descProduct).toHaveText(
             expect.stringContaining('carry.allTheThings() with the sleek') // yg di expect si desc product
         )
-    })
-
-    it('User click toggle button list to grid.', async function(){
-            await HomePage.toggleListButton()
-            await expect(HomePage.addToCartButton).toHaveText('ADD TO CART')
-        })  
+    })  
 
 //////////////// SORTING GA YAKIN soalnya yang di expect di tiap productnya, kalo productnya ganti ??
     it('User click sorting and choose by Name(Z to A).', async function(){

@@ -16,20 +16,12 @@ class HomePage {
     get highestPrice() { return $('//*[@content-desc="test-Price" and @text="$49.99"]') }
     get addToCartButton() { return $('//*[@text="ADD TO CART"]') }
     get cartButton() { return $('//*[@content-desc="test-Cart"]') }
-
-    get cartPage() { return $('//*[@text="YOUR CART"]') }
-    get checkout() { return $('~test-CHECKOUT') }
-    get removeButton() { return $('//*[@content-desc="test-REMOVE"]')}
-    get continueButton() { return $('//*[@content-desc="test-CONTINUE SHOPPING"]') }
-    get checkoutInfo() { return $('//*[@text="CHECKOUT: INFORMATION"]') }
-
-
     get menuButton() { return $('//*[@content-desc="test-Menu"]') }
     get closeButton() { return $('//*[@content-desc="test-Close"]') }
 
 
     // actions
-    async toggleGridButton(){
+    async chageLayout(){
         await this.toggleButton.click()
     }
 
@@ -69,25 +61,5 @@ class HomePage {
     async selectCartButton(){
         await this.cartButton.click()
     }
-
-    // async checkoutButton(){
-    //     await this.checkout.click()
-    // }
-
-    // async removeAndContinue(){
-    //     await this.removeButton.click()
-    //     await this.continueButton.click()
-    // }
-
-    // async select1Product(){
-    //     await this.highestAlphabet.click()
-    // }
-
-    // async detailProduct(){
-    //     await this.addToCartButton.click()
-    //     await driver.pause(2000)
-    //     await this.removeButton.click()
-    // }
-
 }
 export default new HomePage()

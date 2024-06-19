@@ -64,26 +64,4 @@ describe('HOME PAGE SWAGLABS', function(){
         await expect(HomePage.closeButton).toBeDisplayed()
     })
 
-    // it('User select detail product then remove product', async function(){
-    //     await HomePage.select1Product()
-    //     await scrollScreen(600, 100)
-    //     await HomePage.detailProduct()
-    //     await expect(HomePage.addToCartButton).toBeDisplayed()
-    // })
-
-    // it('User select product then checkout product', async function(){
-    //     await HomePage.selectAddToCartButton()
-    //     await HomePage.selectCartButton()
-    //     await scrollScreen(450, 100)
-    //     await HomePage.checkoutButton()
-    //     await expect(HomePage.checkoutInfo).toBeDisplayed()
-    // })
-
-    // it('User remove product and continue shop', async function(){
-    //     await HomePage.selectAddToCartButton()
-    //     await HomePage.selectCartButton()
-    //     await HomePage.removeAndContinue()
-    //     await expect(LoginPage.login).toHaveText('PRODUCTS')
-    // })
-
 })

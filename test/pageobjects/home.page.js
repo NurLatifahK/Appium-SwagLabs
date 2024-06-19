@@ -25,11 +25,6 @@ class HomePage {
         await this.toggleButton.click()
     }
 
-    async toggleListButton(){
-        await this.toggleButton.click()
-        await this.toggleButton.click()
-    }
-
     async sortZtoA(){
         await this.sortingButton.click()
         await this.ZtoAButton.click()
